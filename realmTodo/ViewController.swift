@@ -32,11 +32,14 @@ class ViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
         
     }
+    
+    
     @objc func didTapAdd(){
         // alert pop up
         let alert = UIAlertController(title: "New Item", message: "Enter a new Task", preferredStyle: .alert)
         // textfield for the alert box
         alert.addTextField(configurationHandler: nil)
+        
         // add submit action button which will save it to the core data
         // weak self to address memory leak
         alert.addAction(UIAlertAction(title: "Submit", style: .cancel, handler: {[weak self]_ in
@@ -52,6 +55,8 @@ class ViewController: UIViewController {
             
             
         }))
+        
+        alert.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
         
         
         
