@@ -39,10 +39,10 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: "New Item", message: "Enter a new Task", preferredStyle: .alert)
         // textfield for the alert box
         alert.addTextField(configurationHandler: nil)
-        
+        alert.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
         // add submit action button which will save it to the core data
         // weak self to address memory leak
-        alert.addAction(UIAlertAction(title: "Submit", style: .cancel, handler: {[weak self]_ in
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: {[weak self]_ in
             // validation of the textfield done in the closure
             guard let field = alert.textFields?.first, let text = field.text, !text.isEmpty else{
                 return
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
             
         }))
         
-        alert.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+        
         
         
         
@@ -74,6 +74,7 @@ class ViewController: UIViewController {
         print("the task from db: \(tasks)")
     }
     
+    
     func saveData(task: Tasktodo){
         do{
             realm.beginWrite()
@@ -86,6 +87,8 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    
     
     func updateData(old: Tasktodo, newName: String){
         
